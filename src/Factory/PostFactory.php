@@ -48,8 +48,8 @@ final class PostFactory extends ModelFactory
     {
         return [
             'content' => self::faker()->text(),
-            'slug' => self::faker()->sentence(),
-            'title' => self::faker()->sentence(),
+            'title' => $title = self::faker()->unique()->sentence(),
+            'slug' => strtolower(str_replace(' ', '-', $title)),
         ];
     }
 
