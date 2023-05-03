@@ -21,7 +21,8 @@ class CommentCrudController extends AbstractCrudController
     {
         return $crud->setSearchFields(['id', 'content'])
             ->setDefaultSort(['id' => 'DESC'])
-            ->setPageTitle('index', 'Comentarios');
+            ->setEntityLabelInPlural('Comentarios')
+            ->setEntityLabelInSingular('Comentario');
     }
 
     public function configureFields(string $pageName): iterable
