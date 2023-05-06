@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="card m-5 w-75 mx-auto">
+        <div class="card-header text-center">
+            <h4 class="fw-bold">{{ post.title }}</h4>
+            <div class="d-flex justify-content-between">
+                <h6 class="fst-italic">Categoría: {{ post.category.name }}</h6>
+                <h6 class=" text-muted">Creado por: {{ post.user.name }} {{ post.user.email }}</h6>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>{{ post.content }}</p>
+        </div>
+        <div class="card-footer">
+            <h4>Comentarios:</h4>
+            <div class="list-group">
+                {{ include('_comment-form.html.twig') }}
+                {% for comment in post.comments %}
+                    <div class="list-group-item m-2 border rounded">
+                        <div class="d-flex justify-content-between">
+                            <p class="m-0">{{ comment.user }}</p>
+                            <p class="m-0">{{ comment.id }}</p>
+                        </div>
+                        <hr class="m-0 p-0">
+                        <div class="mt-2">
+                            <p class="m-0">{{ comment.content }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

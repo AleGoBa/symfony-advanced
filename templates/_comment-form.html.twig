@@ -1,0 +1,9 @@
+<div class="list-group-item border rounded">
+    {% if app.user %}
+        <p>Comentar como: {{ app.user.email }}</p>
+        {{ form(form, {action: path('home_posts_comments_store', {slug: post.slug})}) }}
+    {% else %}
+        Para comentar, por favor inicia sesión: <a class="btn btn-warning" href="{{ path('app_login') }}">Iniciar
+        sesión</a>
+    {% endif %}
+</div>

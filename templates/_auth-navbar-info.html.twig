@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class="mx-1">
+        {% if app.user %}
+            <a class="btn btn-info">
+                <i class="bi bi-person-circle me-1"></i>{{ app.user }}
+            </a>
+        {% else %}
+            <a class="btn btn btn-info" href="{{ path('app_login') }}">
+                Iniciar sesión
+            </a>
+        {% endif %}
+    </div>
+    <div class="mx-1">
+        {% if app.user %}
+            <a class="btn btn-light" href="{{ path('app_logout') }}">
+                Cerrar sesión
+            </a>
+        {% else %}
+            <a class="btn btn-light" href="{{ path('app_register') }}">
+                Registrarse
+            </a>
+        {% endif %}
+    </div>
+</div>
