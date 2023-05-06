@@ -48,6 +48,7 @@ final class CommentFactory extends ModelFactory
     {
         return [
             'content' => self::faker()->text(255),
+            'user' => UserFactory::random()
         ];
     }
 

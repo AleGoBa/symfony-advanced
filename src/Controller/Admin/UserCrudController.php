@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -23,7 +25,7 @@ class UserCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setSearchFields(['id', 'email', 'content'])
+        return $crud->setSearchFields(['id', 'email', 'name'])
             ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Usuarios')
             ->setEntityLabelInSingular('Usuario');
@@ -33,6 +35,7 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
+            TextField::new('name', 'Nombre'),
             EmailField::new('email', 'Email'),
             ChoiceField::new('roles', 'Roles')
                 ->setChoices([
@@ -40,5 +43,10 @@ class UserCrudController extends AbstractCrudController
                     'Usuario' => 'ROLE_USER'
                 ])->allowMultipleChoices()
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)->disable(Action::NEW);
     }
 }

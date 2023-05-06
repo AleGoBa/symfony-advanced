@@ -19,7 +19,7 @@ class CommentCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setSearchFields(['id', 'content'])
+        return $crud->setSearchFields(['id', 'post', 'user'])
             ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Comentarios')
             ->setEntityLabelInSingular('Comentario');
@@ -30,6 +30,7 @@ class CommentCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('post', 'Post al que va dirigido'),
+            AssociationField::new('user', 'Usuario quien hace el comentario'),
             TextEditorField::new('content', 'Contenido'),
         ];
     }
